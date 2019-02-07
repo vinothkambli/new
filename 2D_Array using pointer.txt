@@ -1,0 +1,88 @@
+#include<stdio.h>
+#define row 2
+#define col 2
+void read(int mat[2][2]);
+void mul(int mat1[2][2], int mat2[2][2]);
+void add(int mat1[2][2], int mat2[2][2]);
+void display(int mat[2][2]);
+main()
+{
+	int mat1[row][col], mat2[row][col], option;
+	do
+	{
+		printf("\n1.Read the matrix");
+		printf("\n2.Addition");
+		printf("\n3.Multiplication");
+		printf("\n4.Exit");
+		printf("\nEnter your choice: ");
+		scanf("%d", &option);
+		switch(option)
+		{
+			case 1: printf("Enter the 1st matrix: ");
+					read(mat1);
+			        printf("Enter the 2nd matrix: ");
+					read(mat2);
+					break;
+			case 2: add(mat1, mat2);
+					break;
+			case 3: mul(mat1, mat2);
+					break;
+		}
+	}
+	while (option != 4);
+}
+ 	 
+void read(int mat[2][2])
+{
+	int i, j;
+	
+	for (i = 0; i < row; i++)
+	{
+	for (j = 0; j < col; j++)
+	{
+		scanf("%d", *(mat+i)+j);
+	}
+	}
+}
+
+void display(int mat[row][col])
+{
+	int i, j;
+	
+	for (i = 0; i < row; i++)
+	{
+		printf("\n");
+	for (j = 0; j < col; j++)
+	{
+		printf("%d\t", *(*(mat+i)+j));
+	}
+	}
+}
+void add(int mat1[2][2], int mat2[2][2])
+{
+	int i, j, sum[row][col];
+	for (i = 0; i < row; i++)
+	{
+	for (j = 0; j < col; j++)
+	{
+		*(*(sum+i)+j) = *(*(mat1+i)+j) + *(*(mat2+i)+j);
+	}
+	}
+	display(sum);
+}
+void mul(int mat1[2][2], int mat2[2][2])
+{
+	int i, j, k, pro[row][col];
+	for (i = 0; i < row; i++)
+	{
+	for (j = 0; j < col; j++)
+	{
+		*(*(pro+i)+j) = 0;
+	for (k = 0; k < col; k++)
+		*(*(pro+i)+j) += *(*(mat1+i)+k) * *(*(mat2+k)+j);
+	
+	}
+	}
+	display(pro);
+}
+
